@@ -1,6 +1,6 @@
 # INTRODUCTION
 
-###  This is a project where I try to figure out how to make a language scripting system in godot for a dialogue/visual novel system. It's very easily modifiable, so it's quite flexible.
+###  This is a project where I try to figure out how to make a language scripting system in godot for a dialogue/visual novel system. It's very easily modifiable, so it's quite flexible. Huge shoutout to GDQuest and Dialogic (most things here are based off of their code)
 
 #  CURRENT COMMANDS:
 

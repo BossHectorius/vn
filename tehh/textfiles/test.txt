@@ -1,0 +1,5 @@
+chara test neutral enter right
+Testy "hello"
+chara mom neutral enter left
+John_Kaisen "hello"
+John_Kaisen "now I'm gonna loop"

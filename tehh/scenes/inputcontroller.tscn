@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://n0a60vvgyavj"]
+
+[ext_resource type="Script" uid="uid://c0pqtjttux38f" path="res://scripts/inputcontroller.gd" id="1_82h20"]
+
+[node name="inputcontroller" type="Control" unique_id=1582075416]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_82h20")
+hide_textbox = null

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Character" format=3 uid="uid://q747rth1gcnr"]
+
+[ext_resource type="Texture2D" uid="uid://c0yklv4ses1rk" path="res://yeah, i called her mommy.jpg" id="1_615ce"]
+[ext_resource type="Script" uid="uid://bets3as71uc71" path="res://Resources/character.gd" id="1_ci4mp"]
+
+[resource]
+script = ExtResource("1_ci4mp")
+name = "John Kaisen"
+id = "mom"
+images = {
+&"angry": null,
+&"happy": null,
+&"neutral": ExtResource("1_615ce"),
+&"sad": null
+}
+metadata/_custom_type_script = "uid://bets3as71uc71"

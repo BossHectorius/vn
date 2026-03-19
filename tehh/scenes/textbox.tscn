@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://ct2w3u52arp66"]
+
+[ext_resource type="Script" uid="uid://b6egsagxqbwt0" path="res://scripts/textbox.gd" id="1_nyk3b"]
+
+[node name="Control" type="Control" unique_id=1883357378]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nyk3b")
+spc = 0.2
+
+[node name="Panel" type="Panel" parent="." unique_id=1438023596]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -576.0
+offset_top = -220.0
+offset_right = 576.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel" unique_id=1664629896]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/bold_font_size = 48
+theme_override_font_sizes/bold_italics_font_size = 48
+theme_override_font_sizes/italics_font_size = 48
+theme_override_font_sizes/mono_font_size = 48
+bbcode_enabled = true
+scroll_active = false
+visible_characters = 0
+visible_ratio = 0.71153843
+
+[node name="Name" type="Panel" parent="." unique_id=885098299]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -576.0
+offset_top = -342.0
+offset_right = -178.0
+offset_bottom = -217.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="nameholder" type="RichTextLabel" parent="Name" unique_id=540499364]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 40.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/bold_font_size = 48
+theme_override_font_sizes/bold_italics_font_size = 48
+theme_override_font_sizes/italics_font_size = 48
+theme_override_font_sizes/mono_font_size = 48
+bbcode_enabled = true
+scroll_active = false
+horizontal_alignment = 1

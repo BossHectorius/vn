@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://c46kl8ry2ggxs"]
+
+[ext_resource type="Script" uid="uid://dbykej3yyxb1n" path="res://scripts/ScenePlayer.gd" id="1_m715v"]
+[ext_resource type="PackedScene" uid="uid://ct2w3u52arp66" path="res://scenes/textbox.tscn" id="2_qu8lg"]
+[ext_resource type="PackedScene" uid="uid://duebosurjfped" path="res://scenes/character.tscn" id="3_2og4a"]
+
+[node name="ScenePlayer" type="Node" unique_id=1067148912]
+script = ExtResource("1_m715v")
+
+[node name="Background" type="TextureRect" parent="." unique_id=645812241]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=924896298]
+
+[node name="textbox" parent="CanvasLayer" unique_id=1883357378 instance=ExtResource("2_qu8lg")]
+spc = 0.1
+
+[node name="Character" parent="." unique_id=1975940248 instance=ExtResource("3_2og4a")]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=211413536]
+position = Vector2(576, 324)

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://biyrnwu6mkjgr"]
+
+[ext_resource type="Script" uid="uid://dssp44qd62hcg" path="res://scripts/chapter_player.gd" id="1_os5cm"]
+[ext_resource type="PackedScene" uid="uid://c46kl8ry2ggxs" path="res://scenes/ScenePlayer.tscn" id="2_dbos4"]
+[ext_resource type="PackedScene" uid="uid://n0a60vvgyavj" path="res://scenes/inputcontroller.tscn" id="3_dbos4"]
+
+[node name="ChapterPlayer" type="Node" unique_id=1471468275]
+script = ExtResource("1_os5cm")
+scripts = Array[String](["res://textfiles/test.txt"])
+
+[node name="ScenePlayer" parent="." unique_id=1067148912 instance=ExtResource("2_dbos4")]
+
+[node name="inputcontroller" parent="." unique_id=1582075416 instance=ExtResource("3_dbos4")]
+hide_textbox = false
+
+[connection signal="scene_finished" from="ScenePlayer" to="." method="_on_scene_player_scene_finished"]
+[connection signal="requested" from="inputcontroller" to="ScenePlayer" method="_on_inputcontroller_requested"]
+
+[editable path="ScenePlayer"]
+[editable path="ScenePlayer/Character"]

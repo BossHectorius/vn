@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Character" format=3 uid="uid://bgtfnwkaxoapx"]
+
+[ext_resource type="Texture2D" uid="uid://b4f64op8f2gnx" path="res://icon.svg" id="1_031ia"]
+[ext_resource type="Script" uid="uid://bets3as71uc71" path="res://Resources/character.gd" id="2_owmus"]
+
+[resource]
+script = ExtResource("2_owmus")
+name = "Testy"
+id = "test"
+images = {
+&"angry": null,
+&"happy": null,
+&"neutral": ExtResource("1_031ia"),
+&"sad": null
+}
+metadata/_custom_type_script = "uid://bets3as71uc71"

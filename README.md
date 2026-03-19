@@ -14,7 +14,7 @@ Turn it into a godot plugin with maybe syntax correction (unnecessary, but I wil
 ##  Character
 Displays a character on the screen.
 ### Syntax
-It's written as: chara [character_id][side][expression][animation]
+It's written as: chara (character_id)[side][expression][animation]
 ###  Parameters
 ####  Sides: 
 left, right, center
@@ -35,7 +35,7 @@ All of those available through BBCode plus slower typing speed, written as: [slo
 ## Background
 Displays a background.
 ###  Syntax
-Written as: background [background_id] [animation]
+Written as: background (background_id) [animation]
 ### Animations
 Yet to be implemented
 

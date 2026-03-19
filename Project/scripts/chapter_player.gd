@@ -33,8 +33,8 @@ func get_scenes() -> void:
 			for i in tree.expressions:
 				print(i.type)
 			var dialogue: SceneOrganiser.DialogueTree = organiser.organise(tree, 0)
-			#if !dialogue.nodes[dialogue.index - 1] is SceneOrganiser.JumpCommand:
-				#(dialogue.nodes[dialogue.index - 1] as SceneOrganiser.BaseNode).next = - 1
+			if !dialogue.nodes[dialogue.index - 1] is SceneOrganiser.JumpCommand:
+				(dialogue.nodes[dialogue.index - 1] as SceneOrganiser.BaseNode).next = - 1
 			scenes.append(dialogue)
 
 

@@ -125,11 +125,15 @@ func organise(syntax_tree: Parser.SyntaxTree, start_index: int) -> DialogueTree:
 	var dialogue_tree := DialogueTree.new()
 	dialogue_tree.index = start_index
 	if !jump_points_set:
-		set_jump_points(syntax_tree, dialogue_tree)
+		var jump_tree := Parser.SyntaxTree.new()
+		jump_tree.expressions = syntax_tree.expressions
+		set_jump_points(jump_tree, dialogue_tree)
 	while !syntax_tree.is_at_end():
 		var expression: Parser.BaseExpression = syntax_tree.move_fw()
 		if expression.type == Parser.EXPRESSIONTYPES.COMMAND:
 			var node := transpile_command(dialogue_tree, expression)
+			if node == null:
+				continue
 			dialogue_tree.append_node(node)
 		elif expression.type == Parser.EXPRESSIONTYPES.DIALOGUE:
 			var node := transpile_dialogue(dialogue_tree, expression)
@@ -187,45 +191,34 @@ func transpile_command(tree: DialogueTree, expression: Parser.BaseExpression) ->
 	elif expression.value == Lexer.COMMANDS.SCENE:
 		var new_scene: String = expression.arguments[0].value
 		command_node = SceneCommandNode.new(tree.index + 1, new_scene)
-	elif expression.value == Lexer.COMMANDS.JUMP:
-		print("jump maybe")
+	elif expression.previous_type == Lexer.COMMANDS.JUMP:
 		var jump_point: String = expression.arguments[0].value
-		if _jump_points.has(jump_point):
+		if _jump_points.find_key(jump_point):
 			var target: int = _get_jump_point(jump_point)
 			command_node = JumpCommand.new(target)
-			print("jump found")
 	elif expression.value == Lexer.COMMANDS.SET:
 		var symbol: String = expression.arguments[0].value
 		var value = expression.arguments[1].value
 		command_node = SetCommandNode.new(tree.index + 1, symbol, value)
-	
+	elif expression.previous_type == Lexer.COMMANDS.MARK:
+		pass
 	return command_node
 
 func transpile_dialogue(dialogue_tree: DialogueTree, expression: Parser.BaseExpression) -> DialogueNode:
 	var node := DialogueNode.new(dialogue_tree.index + 1, expression.value)
 	node.character = expression.character
 	return node
-	#node.character = (
-		#expression.arguments[0].value if not expression.arguments.is_empty() else ""
-	#)
-	#
-	#var length := len(expression.arguments)
-	#node.expression = expression.arguments[1].value if length > 1 else ""
-	#node.animation = expression.arguments[2].value if length > 2 else ""
-	#node.side = expression.arguments[3].value if length > 3 else ""
-	#return node
 
 
 func set_jump_points(tree: Parser.SyntaxTree, dialogue_tree: DialogueTree) -> void:
-	var original_index = tree.current_index
 	var dialogue_og_index = dialogue_tree.index
 	while !tree.is_at_end():
 		var expression = tree.move_fw()
-		if expression.value == Lexer.COMMANDS.MARK:
-			var new_jump_point: String = expression.arguments[0].value
-			if !_jump_points.has(new_jump_point):
+		dialogue_tree.index += 1
+		if not expression is Parser.DialogueExpression:
+			if expression.previous_type == Lexer.COMMANDS.MARK:
+				var new_jump_point: String = expression.arguments[0].value
 				_add_jump_point(new_jump_point, dialogue_tree.index)
-	tree.current_index = original_index
 	dialogue_tree.index = dialogue_og_index
 	jump_points_set = true
 
@@ -233,7 +226,6 @@ func _add_jump_point(name: String, index: int) -> void:
 	if _jump_points.has(name):
 		push_error("Jump point %s already exists" % name)
 		return
-	print("added jump point %s that points to %s" % [name, index])
 	_jump_points[index] = name
 
 func _copy_nodes(original_value: int, nodes: Array, target_tree: DialogueTree, source_tree: DialogueTree) -> void:
@@ -244,7 +236,8 @@ func _copy_nodes(original_value: int, nodes: Array, target_tree: DialogueTree, s
 		target_tree.index += 1
 
 func _get_jump_point(name: String) -> int:
-	if _jump_points.has(name):
-		return _jump_points[name]
+	var point: int = _jump_points.find_key(name)
+	if point:
+		return point
 	push_error("Nonexistent jump point")
 	return -2

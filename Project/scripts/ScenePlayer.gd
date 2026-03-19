@@ -44,6 +44,8 @@ func run_scene() -> void:
 				textbox.change_text(node.line, false, char_name)
 				key = node.next
 				await textbox.next_requested
+		elif node is SceneOrganiser.JumpCommand:
+			key = node.next - 1
 		else:
 			key = KEY_EOS
 	scene_finished.emit()

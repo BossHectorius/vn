@@ -7,6 +7,7 @@
 ###  (EVERYTHING IN BRACKETS IS OPTIONAL AND DOESN'T HAVE A SET ORDER)
 
 ##  Character:
+Displays a character on the screen.
 ### Syntax
 It's written as: chara [character_id][side][expression][animation]
 ###  Parameters
@@ -19,6 +20,7 @@ enter, leave
 
 
 ## Dialogue:
+Displays text and a speaker name.
 ###  Syntax
 It's written as [character name. If it matches an id, it will show the Display_Name attached to that id. Else, it'll just display the name written] + "[dialogue. Must be in quotes]"
 ### Text effects
@@ -26,7 +28,14 @@ All of those available through BBCode plus slower typing speed, written as: [slo
 (the effects must be inside the quotes too)
 
 ## Background:
+Displays a background.
 ###  Syntax
 Written as: background [background_id] [animation]
 ### Animations
 Yet to be implemented
+
+## Jumps:
+Jumps the dialogue to a specified jump point.
+To set a jump point, you must first do 'mark (point name)'
+### Syntax
+It's written as 'jump (point name)'

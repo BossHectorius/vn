@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ct2w3u52arp66"]
 
-[ext_resource type="Script" uid="uid://b6egsagxqbwt0" path="res://scripts/textbox.gd" id="1_nyk3b"]
+[ext_resource type="Script" uid="uid://b6egsagxqbwt0" path="res://scripts/text/textbox.gd" id="1_nyk3b"]
 
 [node name="Control" type="Control" unique_id=1883357378]
 layout_mode = 3
@@ -10,7 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nyk3b")
-spc = 0.2
+spc = 0.1
 
 [node name="Panel" type="Panel" parent="." unique_id=1438023596]
 layout_mode = 1

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://biyrnwu6mkjgr"]
 
-[ext_resource type="Script" uid="uid://dssp44qd62hcg" path="res://scripts/chapter_player.gd" id="1_os5cm"]
+[ext_resource type="Script" uid="uid://dssp44qd62hcg" path="res://scripts/chapterPlayer/chapter_player.gd" id="1_os5cm"]
 [ext_resource type="PackedScene" uid="uid://c46kl8ry2ggxs" path="res://scenes/ScenePlayer.tscn" id="2_dbos4"]
 [ext_resource type="PackedScene" uid="uid://n0a60vvgyavj" path="res://scenes/inputcontroller.tscn" id="3_dbos4"]
 

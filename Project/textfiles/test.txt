@@ -4,8 +4,8 @@ chara mom neutral enter left
 John_Kaisen "hello"
 mark alloh
 chara mom neutral enter center
-"Suddenly, there were two of them"
-"But one must die..."
+"Suddenly, [pause 0.4]there were two of them"
+"[shake]But one must die..."
 John_Kaisen "die"
 chara mom neutral leave center
 John_Kaisen "I'll be back..."

@@ -1,4 +1,6 @@
 chara test neutral enter right
+bg test fade_in
+wait_anim
 Testy "hello"
 chara mom neutral enter left
 John_Kaisen "hello"
@@ -9,4 +11,5 @@ chara mom neutral enter center
 John_Kaisen "die"
 chara mom neutral leave center
 John_Kaisen "I'll be back..."
+Testy "damn"
 jump alloh

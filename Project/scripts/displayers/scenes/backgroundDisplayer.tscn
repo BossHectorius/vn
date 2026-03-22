@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://cy547g2tdfeip"]
+
+[ext_resource type="Script" uid="uid://vvt3xivltlec" path="res://scripts/displayers/background.gd" id="1_gy7lk"]
+[ext_resource type="Texture2D" uid="uid://b4f64op8f2gnx" path="res://icon.svg" id="1_qthbk"]
+[ext_resource type="Shader" uid="uid://dyy2dfhkk6mw2" path="res://scripts/displayers/shaders/backgroundDisplayer.gdshader" id="1_x7rko"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4kgth"]
+shader = ExtResource("1_x7rko")
+shader_parameter/radius = 0.0
+shader_parameter/center = Vector2(0.5, 0.5)
+
+[sub_resource type="Animation" id="Animation_x7rko"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:instance_shader_parameters/max_dist")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_4kgth"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:instance_shader_parameters/max_dist")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 2.09999990463257]
+}
+
+[sub_resource type="Animation" id="Animation_cg0rg"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:instance_shader_parameters/max_dist")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.09999990463257, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cg0rg"]
+_data = {
+&"RESET": SubResource("Animation_x7rko"),
+&"fade_in": SubResource("Animation_4kgth"),
+&"fade_out": SubResource("Animation_cg0rg")
+}
+
+[node name="Background" type="TextureRect" unique_id=1593020667]
+material = SubResource("ShaderMaterial_4kgth")
+instance_shader_parameters/max_dist = 0.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_qthbk")
+expand_mode = 1
+script = ExtResource("1_gy7lk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=392119005]
+libraries/ = SubResource("AnimationLibrary_cg0rg")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

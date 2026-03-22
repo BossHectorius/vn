@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://ct2w3u52arp66"]
 
 [ext_resource type="Script" uid="uid://b6egsagxqbwt0" path="res://scripts/text/textbox.gd" id="1_nyk3b"]
+[ext_resource type="Script" uid="uid://bmy17gswle8ek" path="res://scripts/displayers/statecontainer.gd" id="2_3xmdk"]
+[ext_resource type="Texture2D" uid="uid://b4f64op8f2gnx" path="res://icon.svg" id="2_g5d5p"]
+[ext_resource type="Script" uid="uid://cxe65h3e3hjcf" path="res://scripts/text/HExtendLabel.gd" id="4_qagdh"]
 
 [node name="Control" type="Control" unique_id=1883357378]
 layout_mode = 3
@@ -10,59 +13,29 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nyk3b")
-spc = 0.1
+spc = 0.05
+metadata/_edit_vertical_guides_ = [-374.0]
 
-[node name="Panel" type="Panel" parent="." unique_id=1438023596]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -576.0
-offset_top = -220.0
-offset_right = 576.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Panel" unique_id=1664629896]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 48
-theme_override_font_sizes/bold_font_size = 48
-theme_override_font_sizes/bold_italics_font_size = 48
-theme_override_font_sizes/italics_font_size = 48
-theme_override_font_sizes/mono_font_size = 48
-bbcode_enabled = true
-scroll_active = false
-visible_characters = 0
-visible_ratio = 0.71153843
-
-[node name="Name" type="Panel" parent="." unique_id=885098299]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -576.0
-offset_top = -342.0
-offset_right = -178.0
-offset_bottom = -217.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="Name" type="NinePatchRect" parent="." unique_id=2005447459 node_paths=PackedStringArray("label")]
+custom_minimum_size = Vector2(220, 100)
+layout_mode = 0
+offset_top = 328.0
+offset_right = 220.0
+offset_bottom = 428.0
+texture = ExtResource("2_g5d5p")
+script = ExtResource("2_3xmdk")
+default_height = 328.0
+label = NodePath("nameholder")
+metadata/_custom_type_script = "uid://bmy17gswle8ek"
 
 [node name="nameholder" type="RichTextLabel" parent="Name" unique_id=540499364]
+custom_minimum_size = Vector2(220, 60)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 40.0
-offset_bottom = -24.0
+offset_top = 24.0
+offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 48
@@ -73,3 +46,30 @@ theme_override_font_sizes/mono_font_size = 48
 bbcode_enabled = true
 scroll_active = false
 horizontal_alignment = 1
+script = ExtResource("4_qagdh")
+
+[node name="Text" type="NinePatchRect" parent="." unique_id=1143267201]
+custom_minimum_size = Vector2(1152, 220)
+layout_mode = 0
+offset_top = 428.0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("2_g5d5p")
+script = ExtResource("2_3xmdk")
+default_height = 428.0
+metadata/_custom_type_script = "uid://bmy17gswle8ek"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text" unique_id=1664629896]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/bold_font_size = 48
+theme_override_font_sizes/bold_italics_font_size = 48
+theme_override_font_sizes/italics_font_size = 48
+theme_override_font_sizes/mono_font_size = 48
+bbcode_enabled = true
+scroll_active = false

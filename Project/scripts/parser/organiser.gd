@@ -25,6 +25,15 @@ class BaseNode:
 	func _init(_next: int) -> void:
 		self.next = _next
 
+class WaitCommandNode:
+	extends BaseNode
+	
+	var value: String
+	
+	func _init(_next: int, _value: String) -> void:
+		self.next = _next
+		self.value = _value
+
 class SetCommandNode:
 	extends BaseNode
 	
@@ -175,11 +184,10 @@ func organise(syntax_tree: Parser.SyntaxTree, start_index: int) -> DialogueTree:
 func transpile_command(tree: DialogueTree, expression: Parser.BaseExpression) -> BaseNode:
 	var command_node: BaseNode = null
 	
-	if expression.value == Lexer.COMMANDS.BACKGROUND:
+	if expression.previous_type == Lexer.COMMANDS.BACKGROUND:
 		var background: String = expression.arguments[0].value
-		
 		command_node = BackgroundNode.new(tree.index + 1, background)
-		command_node.transition = expression.arguments[1].value
+		command_node.transition = expression.arguments[1].value if expression.arguments.size() > 1 else ""
 
 	elif expression.previous_type == Lexer.COMMANDS.CHARACTER:
 		command_node = CharacterCommandNode.new(tree.index + 1, expression.arguments[0].value)
@@ -187,7 +195,10 @@ func transpile_command(tree: DialogueTree, expression: Parser.BaseExpression) ->
 		command_node.expression = expression.arguments[1].value if length > 1 else ""
 		command_node.animation = expression.arguments[2].value if length > 2 else ""
 		command_node.side = expression.arguments[3].value if length > 3 else ""
-
+	elif expression.previous_type == Lexer.COMMANDS.WAIT_ANIM:
+		command_node = WaitCommandNode.new(tree.index + 1, Lexer.COMMANDS.WAIT_ANIM)
+	elif expression.previous_type == Lexer.COMMANDS.WAIT_INPUT:
+		command_node = WaitCommandNode.new(tree.index + 1, Lexer.COMMANDS.WAIT_INPUT)
 	elif expression.value == Lexer.COMMANDS.SCENE:
 		var new_scene: String = expression.arguments[0].value
 		command_node = SceneCommandNode.new(tree.index + 1, new_scene)

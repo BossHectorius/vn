@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://duebosurjfped"]
 
-[ext_resource type="Script" uid="uid://dldmrivtd1o8a" path="res://scripts/chapterPlayer/characterdisplayer.gd" id="1_agfs1"]
+[ext_resource type="Script" uid="uid://dldmrivtd1o8a" path="res://scripts/displayers/characterdisplayer.gd" id="1_agfs1"]
 [ext_resource type="Texture2D" uid="uid://b4f64op8f2gnx" path="res://icon.svg" id="2_rkhd4"]
 
 [node name="Character" type="Node2D" unique_id=233361563]

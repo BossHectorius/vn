@@ -3,6 +3,9 @@ class_name CharacterDisplayer
 
 signal display_finished
 
+
+
+
 const SIDE := {
 	LEFT = "left",
 	RIGHT = "right",
@@ -21,6 +24,11 @@ var _tween: Tween
 @onready var left: Sprite2D = $LEFT
 @onready var right := $RIGHT
 @onready var center := $CENTER
+
+const left_pos = Vector2(158.0, 350.0)
+const center_pos = Vector2(576.0, 350.0)
+const right_pos = Vector2(986, 350)
+
 
 func _ready() -> void:
 	hide_everything()
@@ -50,14 +58,18 @@ func _display(character: Character, side: String, expression: String, animation:
 
 func _leave(side: String, sprite: Sprite2D) -> void:
 	var offset: int
+	var end: Vector2
 	if side == SIDE.LEFT:
 		offset = -200
+		end = left_pos
 	elif side == SIDE.RIGHT:
 		offset = 200
+		end = right_pos
 	else:
 		offset = 100
+		end = center_pos
 	var start := sprite.position + Vector2(offset, 0)
-	var end := sprite.position
+	
 	
 	_tween = create_tween()
 	_tween.finished.connect(_on_tween_finished)
@@ -78,14 +90,18 @@ func _leave(side: String, sprite: Sprite2D) -> void:
 
 func _enter(side: String, sprite: Sprite2D) -> void:
 	var offset: int
+	var end: Vector2
 	if side == SIDE.LEFT:
 		offset = -200
+		end = left_pos
 	elif side == SIDE.RIGHT:
 		offset = 200
+		end = right_pos
 	else:
 		offset = 100
+		end = center_pos
 	var start := sprite.position + Vector2(offset, 0)
-	var end := sprite.position
+	
 	
 	_tween = create_tween()
 	_tween.finished.connect(_on_tween_finished)

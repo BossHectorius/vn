@@ -4,12 +4,13 @@ class_name textcontroller
 #seconds per character revealed
 @export_range(0, 5) var spc: float = 1
 #the labels for the text and the name of the character that's speaking
-@onready var text: RichTextLabel = $Panel/RichTextLabel
+@onready var text: RichTextLabel = $Text/RichTextLabel
 @onready var name_display: RichTextLabel = $Name/nameholder
 
 var revealing: bool = false
 var step: float = 0.0
 var effects:Dictionary
+
 
 signal next_requested
 
@@ -22,20 +23,42 @@ func reveal_char() -> void:
 		revealing = true
 		text.visible_characters += 1
 		if text.visible_characters in effects.keys():
-			var eff: LanguageUtils.effect = effects[text.visible_characters]
-			print("effect at %s with type of %s and value of %s" % [text.visible_characters, eff.type, eff.value])
 			apply_effect(effects[text.visible_characters])
 		
 
 	else:
 		revealing = false
 
+func hide_everything() -> void:
+	hide_container(text.get_parent())
+	hide_container(name_display.get_parent())
+
+func show_everything() -> void:
+	show_container(text.get_parent())
+	show_container(name_display.get_parent())
+
+
+#just change container's type to whatever the container's type is in the scene
+func show_container(container: StateContainer) -> void:
+	if container.cur_state == container.STATES.HIDDEN:
+		container.anim_show()
+	else:
+		container.modulate = Color.WHITE
+
+func hide_container(container: StateContainer) -> void:
+	if container.cur_state == container.STATES.SHOWN:
+		container.anim_hide()
+	else:
+		container.modulate = Color(1, 1, 1, 0)
+
 func apply_effect(eff: LanguageUtils.effect) -> void:
 	if eff.type in LanguageUtils.EFFECTS.COMMAND and eff is LanguageUtils.functioneffect:
 		var param: String = eff.parameters[0]
-		var digit: String = param.get_slice("=", 1)
+		var digit = param.get_slice("=", 1)
 		match eff.value:
 			LanguageUtils.EFFECTCOMMANDS.SPEED:
+				if digit == "default":
+					digit = Constants.default_spc
 				_change_speed(str_to_var(digit))
 			LanguageUtils.EFFECTCOMMANDS.PAUSE:
 				_pause(str_to_var(digit))
@@ -67,7 +90,6 @@ func _process(_delta: float) -> void:
 func change_text(_new_text: String, additive: bool = false, character_name: String = "") -> void:
 	var text_parser := LanguageUtils.new()
 	text.visible_characters = 0
-	revealing = true
 	name_display.text = character_name
 	if additive:
 		var old_length: int = text.get_parsed_text().length()
@@ -75,24 +97,25 @@ func change_text(_new_text: String, additive: bool = false, character_name: Stri
 		text.visible_characters = old_length
 	else:
 		text.text = _new_text
-	
 	effects = text_parser.get_effects(text.get_parsed_text())
 	text.text = text_parser.parse_text(text.text, effects.values())
-	name_display.show()
-	name_display.get_parent().show()
+	
 	if name_display.text == "":
-		name_display.hide()
-		name_display.get_parent().hide()
+		show_container(text.get_parent())
+		hide_container(name_display.get_parent())
+	else:
+		show_everything()
+	
+	revealing = true
 
 func _pause(time: float) -> void:
 	revealing = false
 	step = 0
-	var tween := create_tween()
+	var tween = create_tween()
 	tween.tween_callback(_pause_finished).set_delay(time)
 
 func _pause_finished() -> void:
 	revealing = true
-
 
 
 func finish() -> void:

@@ -14,13 +14,15 @@ const TOKENTYPES := {
 	START_OF_FILE = "start_of_file"
 }
 const COMMANDS := {
-	BACKGROUND = "background",
+	BACKGROUND = "bg",
 	SCENE = "scene",
 	JUMP = "jump",
 	MARK = "mark",
 	SET = "set",
 	TRANSITION = "transition",
-	CHARACTER = "chara"
+	CHARACTER = "chara",
+	WAIT_ANIM = "wait_anim",
+	WAIT_INPUT = "wait_input"
 }
 const CONDITIONALS := {
 	IF = "if",

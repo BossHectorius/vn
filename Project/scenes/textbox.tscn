@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://b6egsagxqbwt0" path="res://scripts/text/textbox.gd" id="1_nyk3b"]
 [ext_resource type="Script" uid="uid://bmy17gswle8ek" path="res://scripts/displayers/statecontainer.gd" id="2_3xmdk"]
-[ext_resource type="Texture2D" uid="uid://b4f64op8f2gnx" path="res://icon.svg" id="2_g5d5p"]
+[ext_resource type="Texture2D" uid="uid://c2knk1y60hwpt" path="res://placeholder/PC _ Computer - Danganronpa_ Trigger Happy Havoc - HUD - Yes_No Prompt.png" id="2_qagdh"]
+[ext_resource type="Theme" uid="uid://bghylnhb2ked6" path="res://themes/mainTheme.tres" id="4_c4wvf"]
 [ext_resource type="Script" uid="uid://cxe65h3e3hjcf" path="res://scripts/text/HExtendLabel.gd" id="4_qagdh"]
+[ext_resource type="PackedScene" uid="uid://ctba50kwjb4d6" path="res://scripts/displayers/scenes/choiceDisplayer.tscn" id="6_1rgox"]
 
 [node name="Control" type="Control" unique_id=1883357378]
 layout_mode = 3
@@ -13,16 +15,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nyk3b")
-spc = 0.05
+spc = 0.02
 metadata/_edit_vertical_guides_ = [-374.0]
 
 [node name="Name" type="NinePatchRect" parent="." unique_id=2005447459 node_paths=PackedStringArray("label")]
+self_modulate = Color(1, 1, 1, 0.6156863)
 custom_minimum_size = Vector2(220, 100)
 layout_mode = 0
 offset_top = 328.0
 offset_right = 220.0
 offset_bottom = 428.0
-texture = ExtResource("2_g5d5p")
+texture = ExtResource("2_qagdh")
+region_rect = Rect2(544, 88, 336, 230)
 script = ExtResource("2_3xmdk")
 default_height = 328.0
 label = NodePath("nameholder")
@@ -38,6 +42,7 @@ offset_top = 24.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("4_c4wvf")
 theme_override_font_sizes/normal_font_size = 48
 theme_override_font_sizes/bold_font_size = 48
 theme_override_font_sizes/bold_italics_font_size = 48
@@ -49,12 +54,17 @@ horizontal_alignment = 1
 script = ExtResource("4_qagdh")
 
 [node name="Text" type="NinePatchRect" parent="." unique_id=1143267201]
+self_modulate = Color(1, 1, 1, 0.6156863)
 custom_minimum_size = Vector2(1152, 220)
 layout_mode = 0
 offset_top = 428.0
 offset_right = 1152.0
 offset_bottom = 648.0
-texture = ExtResource("2_g5d5p")
+texture = ExtResource("2_qagdh")
+region_rect = Rect2(496, 86.920074, 392.3241, 232.38004)
+patch_margin_left = 128
+patch_margin_top = 128
+patch_margin_right = 128
 script = ExtResource("2_3xmdk")
 default_height = 428.0
 metadata/_custom_type_script = "uid://bmy17gswle8ek"
@@ -66,6 +76,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("4_c4wvf")
 theme_override_font_sizes/normal_font_size = 48
 theme_override_font_sizes/bold_font_size = 48
 theme_override_font_sizes/bold_italics_font_size = 48
@@ -73,3 +84,17 @@ theme_override_font_sizes/italics_font_size = 48
 theme_override_font_sizes/mono_font_size = 48
 bbcode_enabled = true
 scroll_active = false
+
+[node name="NinePatchRect" parent="." unique_id=494688862 instance=ExtResource("6_1rgox")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -200.0
+offset_right = 100.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2

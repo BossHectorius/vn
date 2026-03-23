@@ -183,18 +183,19 @@ func organise(syntax_tree: Parser.SyntaxTree, start_index: int) -> DialogueTree:
 
 func transpile_command(tree: DialogueTree, expression: Parser.BaseExpression) -> BaseNode:
 	var command_node: BaseNode = null
-	
 	if expression.previous_type == Lexer.COMMANDS.BACKGROUND:
 		var background: String = expression.arguments[0].value
 		command_node = BackgroundNode.new(tree.index + 1, background)
 		command_node.transition = expression.arguments[1].value if expression.arguments.size() > 1 else ""
-
 	elif expression.previous_type == Lexer.COMMANDS.CHARACTER:
 		command_node = CharacterCommandNode.new(tree.index + 1, expression.arguments[0].value)
-		var length := len(expression.arguments)
-		command_node.expression = expression.arguments[1].value if length > 1 else ""
-		command_node.animation = expression.arguments[2].value if length > 2 else ""
-		command_node.side = expression.arguments[3].value if length > 3 else ""
+		for arg in expression.arguments:
+			if arg.value in CharacterDisplayer.ANIMATIONS:
+				command_node.animation = arg.value
+			elif arg.value in CharacterDisplayer.SIDE.values():
+				command_node.side = arg.value
+			else:
+				command_node.expression = arg.value
 	elif expression.previous_type == Lexer.COMMANDS.WAIT_ANIM:
 		command_node = WaitCommandNode.new(tree.index + 1, Lexer.COMMANDS.WAIT_ANIM)
 	elif expression.previous_type == Lexer.COMMANDS.WAIT_INPUT:
@@ -226,7 +227,7 @@ func set_jump_points(tree: Parser.SyntaxTree, dialogue_tree: DialogueTree) -> vo
 	while !tree.is_at_end():
 		var expression = tree.move_fw()
 		dialogue_tree.index += 1
-		if not expression is Parser.DialogueExpression:
+		if expression is Parser.FunctionExpression:
 			if expression.previous_type == Lexer.COMMANDS.MARK:
 				var new_jump_point: String = expression.arguments[0].value
 				_add_jump_point(new_jump_point, dialogue_tree.index)

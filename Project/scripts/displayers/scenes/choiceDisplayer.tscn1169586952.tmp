@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://ctba50kwjb4d6"]
+
+[ext_resource type="Texture2D" uid="uid://c2knk1y60hwpt" path="res://placeholder/PC _ Computer - Danganronpa_ Trigger Happy Havoc - HUD - Yes_No Prompt.png" id="1_weutd"]
+[ext_resource type="Script" uid="uid://bgprxijlxusay" path="res://scripts/displayers/choiceDisplayer.gd" id="2_0gniv"]
+
+[node name="NinePatchRect" type="NinePatchRect" unique_id=494688862]
+self_modulate = Color(1, 1, 1, 0.6509804)
+custom_minimum_size = Vector2(200, 400)
+offset_left = 476.0
+offset_top = 124.0
+offset_right = 676.0
+offset_bottom = 524.0
+texture = ExtResource("1_weutd")
+region_rect = Rect2(587, 103, 214, 221)
+script = ExtResource("2_0gniv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=365972721]
+custom_minimum_size = Vector2(200, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -200.0
+offset_right = 100.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2

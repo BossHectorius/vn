@@ -4,6 +4,7 @@ uniform float radius: hint_range(0.0, 1.0);
 instance uniform float max_dist: hint_range(0.0, 2.1);
 uniform vec2 center = vec2(0.5, 0.5);
 
+
 void vertex() {
 	// Called for every vertex the material is visible on.
 }

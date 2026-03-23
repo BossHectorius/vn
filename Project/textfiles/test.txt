@@ -4,12 +4,18 @@ wait_anim
 Testy "hello"
 chara mom neutral enter left
 John_Kaisen "hello"
-mark alloh
-chara mom neutral enter center
-"Suddenly, [pause 0.4]there were two of them"
-"[shake]But one must die..."
-John_Kaisen "die"
-chara mom neutral leave center
-John_Kaisen "I'll be back..."
-Testy "damn"
-jump alloh
+chara mar neutral enter center
+Marise "hello guys"
+"And they were all together"
+John_Kaisen "what the hell"
+chara mar angry 
+Marise "hey, don't say that!"
+chara mar disappointed
+Marise "People get sad when you treat them like that..."
+John_Kaisen "okay, mommy"
+chara mar flushed 
+Marise "Don't call me that..."
+bg test fade_out
+wait_anim
+bg tet fade_in
+wait_anim

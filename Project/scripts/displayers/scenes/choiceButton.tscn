@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://ct6dqyg4por83"]
+
+[ext_resource type="Theme" uid="uid://bghylnhb2ked6" path="res://themes/mainTheme.tres" id="1_mao33"]
+[ext_resource type="Script" uid="uid://cl0e01p7h2b2u" path="res://scripts/displayers/choice_button.gd" id="2_jwdp2"]
+
+[node name="choice" type="Button" unique_id=1708829950]
+custom_minimum_size = Vector2(200, 50)
+offset_right = 200.0
+offset_bottom = 50.0
+pivot_offset = Vector2(100, 25)
+size_flags_horizontal = 3
+theme = ExtResource("1_mao33")
+theme_override_font_sizes/font_size = 32
+script = ExtResource("2_jwdp2")

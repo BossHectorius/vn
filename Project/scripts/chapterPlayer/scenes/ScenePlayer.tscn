@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cy547g2tdfeip" path="res://scripts/displayers/scenes/backgroundDisplayer.tscn" id="2_ju51b"]
 [ext_resource type="PackedScene" uid="uid://ct2w3u52arp66" path="res://scenes/textbox.tscn" id="2_qu8lg"]
 [ext_resource type="PackedScene" uid="uid://duebosurjfped" path="res://scripts/displayers/scenes/character.tscn" id="3_2og4a"]
+[ext_resource type="Script" uid="uid://bs0v80yfbokxx" path="res://scripts/camera/vn_camera.gd" id="5_jms01"]
 
 [node name="ScenePlayer" type="Node" unique_id=1067148912]
 script = ExtResource("1_m715v")
@@ -19,6 +20,7 @@ spc = 0.1
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=211413536]
 position = Vector2(576, 324)
+script = ExtResource("5_jms01")
 
 [connection signal="anim_finished" from="Background" to="." method="_on_background_anim_finished"]
 [connection signal="display_finished" from="Character" to="." method="_on_character_display_finished"]

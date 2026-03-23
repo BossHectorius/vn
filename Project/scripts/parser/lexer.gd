@@ -22,7 +22,8 @@ const COMMANDS := {
 	TRANSITION = "transition",
 	CHARACTER = "chara",
 	WAIT_ANIM = "wait_anim",
-	WAIT_INPUT = "wait_input"
+	WAIT_INPUT = "wait_input",
+	CHOICE = "choice"
 }
 const CONDITIONALS := {
 	IF = "if",

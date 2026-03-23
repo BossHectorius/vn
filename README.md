@@ -9,7 +9,7 @@ Turn it into a godot plugin with maybe syntax correction (unnecessary, but I wil
 
 #  CURRENT COMMANDS
 
-###  (EVERYTHING IN BRACKETS IS OPTIONAL AND DOESN'T HAVE A SET ORDER)
+###  (EVERYTHING IN BRACKETS IS OPTIONAL BUT HAS A SET ORDER FOR NOW)
 
 ##  Character
 Displays a character on the screen.
@@ -53,7 +53,10 @@ Displays a background.
 ###  Syntax
 Written as: background (background_id) [animation]
 ### Animations
-Yet to be implemented
+#### Fade in
+Written as fade_in
+#### Fade out
+Written as fade_out
 
 ## Jumps
 Jumps the dialogue to a specified jump point.

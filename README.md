@@ -9,7 +9,7 @@ Turn it into a godot plugin with maybe syntax correction (unnecessary, but I wil
 
 #  CURRENT COMMANDS
 
-###  (EVERYTHING IN BRACKETS IS OPTIONAL BUT HAS A SET ORDER FOR NOW)
+###  (EVERYTHING IN BRACKETS IS OPTIONAL AND DOES NOT HAVE A SET ORDER)
 
 ##  Character
 Displays a character on the screen.
@@ -63,3 +63,11 @@ Jumps the dialogue to a specified jump point.
 To set a jump point, you must first do 'mark (point name)'
 ### Syntax
 It's written as 'jump (point name)'
+
+## Wait commands
+### Syntax
+There are two types of wait commands:
+#### Wait input
+Written as wait_input. Will pause everything until an input is detected.
+#### Wait animation
+Written as wait_anim. Will wait until an animation is finished.

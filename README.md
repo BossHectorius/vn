@@ -71,3 +71,14 @@ There are two types of wait commands:
 Written as wait_input. Will pause everything until an input is detected.
 #### Wait animation
 Written as wait_anim. Will wait until an animation is finished.
+
+## Choices
+### Syntax
+Written as 'choice:' followed by the names of each choice with indents. For example:
+Choice:
+  Choice1:
+    contents1
+  Choice2:
+    contents2
+  Choice3:
+    contents3

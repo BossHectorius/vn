@@ -11,8 +11,12 @@ const TOKENTYPES := {
 	COMMAND = "command",
 	BEGINBLOCK = "beginblock",
 	ENDBLOCK = "endblock",
-	START_OF_FILE = "start_of_file"
+	START_OF_FILE = "start_of_file",
+	CHOICE = "choice"
 }
+
+const CHOICE_KEYWORD := "choice"
+
 const COMMANDS := {
 	BACKGROUND = "bg",
 	SCENE = "scene",
@@ -23,7 +27,6 @@ const COMMANDS := {
 	CHARACTER = "chara",
 	WAIT_ANIM = "wait_anim",
 	WAIT_INPUT = "wait_input",
-	CHOICE = "choice"
 }
 const CONDITIONALS := {
 	IF = "if",
@@ -95,16 +98,18 @@ func get_tokens(path: String) -> Array[Token]:
 			pass
 		elif chara == "\n":
 			tokens.append(Token.new(TOKENTYPES.NEWLINE, ""))
-			var current_indent := 0
+			var cur_indent := 0
 			while script.look_fw() == "\t":
-				current_indent += 1
+				cur_indent += 1
 				script.move_fw()
-			var empty: bool = true if script.look_fw() in [" ", "\n"] else false
-			if !empty:
-				if script.current_indent == current_indent:
+			var empty: bool = script.look_fw() in [" ", "\n"]
+			if not empty:
+				if script.current_indent == cur_indent:
 					pass
-				elif script.current_indent > current_indent:
-					tokens.append(Token.new(TOKENTYPES.ENDBLOCK, ""))
+				elif script.current_indent > cur_indent:
+					for i in range(script.current_indent - cur_indent):
+						script.current_indent -= 1
+						tokens.append(Token.new(TOKENTYPES.ENDBLOCK, ""))
 				else:
 					push_error("Invalid indentation at %s" % script.current_index)
 		elif chara == "\"":
@@ -132,6 +137,8 @@ func get_symbol(script: ScriptFile) -> Token:
 	if value in COMMANDS.values():
 		return Token.new(TOKENTYPES.COMMAND, value)
 	elif value in CONDITIONALS.values():
+		return Token.new(TOKENTYPES[value.to_upper()], "")
+	elif value in [CHOICE_KEYWORD]:
 		return Token.new(TOKENTYPES[value.to_upper()], "")
 	else:
 		return Token.new(TOKENTYPES.SYMBOL, value)

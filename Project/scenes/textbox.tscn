@@ -85,7 +85,7 @@ theme_override_font_sizes/mono_font_size = 48
 bbcode_enabled = true
 scroll_active = false
 
-[node name="NinePatchRect" parent="." unique_id=494688862 instance=ExtResource("6_1rgox")]
+[node name="Choice" parent="." unique_id=494688862 instance=ExtResource("6_1rgox")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

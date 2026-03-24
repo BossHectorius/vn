@@ -2,7 +2,9 @@ extends Button
 class_name ChoiceButton
 
 signal finished
-signal choice(choice_name: String)
+signal choice(choice_name: String, target: int)
+
+var target: int = 0
 
 func _ready() -> void:
 	pressed.connect(_on_button_pressed)
@@ -28,4 +30,5 @@ func _on_tween_finished() -> void:
 
 func _on_button_pressed() -> void:
 	self.add_to_group("picked")
-	choice.emit(self.text)
+	print(self.target)
+	choice.emit(self.text, self.target)

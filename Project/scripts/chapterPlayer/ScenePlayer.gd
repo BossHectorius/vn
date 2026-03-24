@@ -67,9 +67,13 @@ func run_scene() -> void:
 					cur_state = STATES.WAITING_INPUT
 			key = node.next
 			await next_requested
+		elif node is SceneOrganiser.ChoiceTreeNode:
+			textbox.choice_display.display_choices(node.choices)
+			key = await textbox.choice_display.decided
+			await textbox.choice_display.finished_hiding
 		else:
 			cur_state = STATES.IDLE
-			key = KEY_EOS
+			key = node.next
 	scene_finished.emit()
 
 func load_scene(dialogue: SceneOrganiser.DialogueTree) -> void:

@@ -6,6 +6,7 @@ class_name textcontroller
 #the labels for the text and the name of the character that's speaking
 @onready var text: RichTextLabel = $Text/RichTextLabel
 @onready var name_display: RichTextLabel = $Name/nameholder
+@onready var choice_display: ChoiceDisplayer = $Choice
 
 var revealing: bool = false
 var step: float = 0.0

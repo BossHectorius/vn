@@ -29,9 +29,9 @@ func get_scenes() -> void:
 	if !scripts.is_empty():
 		for script in scripts:
 			var tokens: Array = lexer.get_tokens(script)
+			for i in tokens:
+				print("token type: %s of value %s" % [i.type, i.value])
 			var tree: Parser.SyntaxTree = parser.parse_tokens(tokens)
-			for i in tree.expressions:
-				print(i.type)
 			var dialogue: SceneOrganiser.DialogueTree = organiser.organise(tree, 0)
 			if !dialogue.nodes[dialogue.index - 1] is SceneOrganiser.JumpCommand:
 				(dialogue.nodes[dialogue.index - 1] as SceneOrganiser.BaseNode).next = - 1

@@ -87,6 +87,15 @@ class BackgroundNode:
 		self.bg = _bg
 		
 
+class ChoiceTreeNode:
+	extends BaseNode
+	
+	var choices: Array
+	
+	func _init(_next: int, _choices: Array) -> void:
+		self.next = _next
+		self.choices = _choices
+
 class TransitionCommandNode:
 	extends BaseNode
 	
@@ -177,6 +186,23 @@ func organise(syntax_tree: Parser.SyntaxTree, start_index: int) -> DialogueTree:
 				_copy_nodes(original_value, else_block_dialogue_tree.nodes.keys(), dialogue_tree, else_block_dialogue_tree)
 			dialogue_tree.index = original_value
 			dialogue_tree.append_node(tree_node)
+		
+		elif expression.type == Parser.EXPRESSIONTYPES.CHOICE:
+			var choices := []
+			#stores the original position to return to it after going through the choices
+			var og_pos := dialogue_tree.index
+			#stores each choice in a normally unreachable place so as to not get in the way
+			dialogue_tree.index += CHOICE_ID
+			for block in expression.value:
+				var subtree := Parser.SyntaxTree.new()
+				subtree.expressions = block.value
+				dialogue_tree.index += 1
+				
+				var block_dialogue_tree: DialogueTree = organise(subtree, dialogue_tree.index)
+				choices.append({name = block.name, target = dialogue_tree.index})
+				_copy_nodes(og_pos, block_dialogue_tree.nodes.keys(), dialogue_tree, block_dialogue_tree)
+			dialogue_tree.index = og_pos
+			dialogue_tree.append_node(ChoiceTreeNode.new(dialogue_tree.index + 1, choices))
 		else:
 			push_error("Unrecognized expression of type: %s with value: %s" % [expression.type, expression.value])
 	return dialogue_tree
@@ -200,7 +226,7 @@ func transpile_command(tree: DialogueTree, expression: Parser.BaseExpression) ->
 		command_node = WaitCommandNode.new(tree.index + 1, Lexer.COMMANDS.WAIT_ANIM)
 	elif expression.previous_type == Lexer.COMMANDS.WAIT_INPUT:
 		command_node = WaitCommandNode.new(tree.index + 1, Lexer.COMMANDS.WAIT_INPUT)
-	elif expression.value == Lexer.COMMANDS.SCENE:
+	elif expression.previous_type == Lexer.COMMANDS.SCENE:
 		var new_scene: String = expression.arguments[0].value
 		command_node = SceneCommandNode.new(tree.index + 1, new_scene)
 	elif expression.previous_type == Lexer.COMMANDS.JUMP:

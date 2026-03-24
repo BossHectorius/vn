@@ -6,6 +6,16 @@ chara mom neutral enter left
 John_Kaisen "hello"
 chara mar neutral enter center
 Marise "hello guys"
+choice:
+	"I love you marise":
+		"haha"
+	"I hate you marise":
+		chara mar disappointed
+		Marise "oh"
+		chara mar serious
+		Marise "well, damn you"
+	"What":
+		"huh?"
 "And they were all together"
 John_Kaisen "what the hell"
 chara mar angry 

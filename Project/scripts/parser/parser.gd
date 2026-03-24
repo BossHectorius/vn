@@ -11,6 +11,8 @@ const EXPRESSIONTYPES := {
 	ELSE = Lexer.CONDITIONALS.ELSE,
 	COMMAND = Lexer.TOKENTYPES.COMMAND,
 	CHARACTER = Lexer.COMMANDS.CHARACTER,
+	CHOICE = "Choice",
+	CHOICEBLOCK = "ChoiceBlock"
 }
 
 
@@ -30,6 +32,16 @@ class BaseExpression:
 	func _init(_type: String, _value) -> void:
 		self.type = _type
 		self.value = _value
+
+class ChoiceBlockExpression:
+	extends BaseExpression
+	
+	var name := ""
+	
+	func _init(_type: String, _value, _name: String) -> void:
+		self.type = _type
+		self.value = _value
+		self.name = _name
 
 class DialogueExpression:
 	extends BaseExpression
@@ -127,7 +139,7 @@ class MiniParser:
 	func parse_indented_block() -> Array:
 		var block := []
 		var indent := 1
-		if self.get_current().type == Lexer.TOKENTYPES.BEGINBLOCK:
+		if self.look_fw().type == Lexer.TOKENTYPES.BEGINBLOCK:
 			self.move_fw()
 		while !is_at_end():
 			var next_expression := self.parse_next_token()
@@ -141,7 +153,6 @@ class MiniParser:
 				if indent == 0:
 					return block
 				else:
-					push_error("something failed")
 					break
 			else:
 				block.append(next_expression)
@@ -189,6 +200,20 @@ class MiniParser:
 		Lexer.TOKENTYPES.ENDBLOCK
 		]):
 			return BaseExpression.new(cur_token.type, cur_token.value)
+		elif cur_token.type == Lexer.TOKENTYPES.CHOICE:
+			var blocks := []
+			while not self.is_at_end():
+				var token := self.move_fw()
+				if token.type == Lexer.TOKENTYPES.STRING_LITERAL:
+					blocks.append(
+						ChoiceBlockExpression.new(
+							EXPRESSIONTYPES.CHOICEBLOCK, self.parse_indented_block(), token.value
+						)
+					)
+				elif token.type == Lexer.TOKENTYPES.ENDBLOCK:
+					return BaseExpression.new(EXPRESSIONTYPES.CHOICE, blocks)
+			push_error("Reached end of file before finishing going through a choice tree")
+			return null
 		else:
 			return null
 class SyntaxTree:

@@ -4,7 +4,7 @@ class_name Character
 @export var name := "Display name"
 @export var id: String = "name id"
 @export_category("Expressions")
-@export var images := {
+@export var images: Dictionary[String, Texture2D] = {
 	neutral = null,
 	angry = null,
 	happy = null,

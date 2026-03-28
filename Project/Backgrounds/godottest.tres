@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Background" format=3 uid="uid://bn55ckqkvo3mp"]
 
 [ext_resource type="Script" uid="uid://dxxvuig38iems" path="res://Resources/background.gd" id="1_j8213"]
-[ext_resource type="Texture2D" uid="uid://b4f64op8f2gnx" path="res://icon.svg" id="2_ftqmc"]
+[ext_resource type="Texture2D" uid="uid://bktbra4iqhrc3" path="res://placeholder/bg15a.jpg" id="2_ftqmc"]
 
 [resource]
 script = ExtResource("1_j8213")

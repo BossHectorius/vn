@@ -54,6 +54,9 @@ func run_scene() -> void:
 					char_name = node.character
 					if char_name.contains("_"):
 						char_name = char_name.replace("_", " ")
+				var match_resource: Character = ResourceDB.get_character(char_name)
+				if match_resource:
+					char_name = match_resource.name
 				textbox.change_text(node.line, false, char_name)
 				key = node.next
 				await textbox.next_requested

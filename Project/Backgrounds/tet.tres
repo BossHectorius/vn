@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Background" format=3 uid="uid://d0sghurjj8ryv"]
+
+[ext_resource type="Script" uid="uid://dxxvuig38iems" path="res://Resources/background.gd" id="1_ksq1j"]
+[ext_resource type="Texture2D" uid="uid://b4f64op8f2gnx" path="res://icon.svg" id="2_v5hp3"]
+
+[resource]
+script = ExtResource("1_ksq1j")
+texture = ExtResource("2_v5hp3")
+id = "tet"
+metadata/_custom_type_script = "uid://dxxvuig38iems"

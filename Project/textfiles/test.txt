@@ -17,7 +17,7 @@ choice:
 	"What":
 		"huh?"
 "And they were all together"
-John_Kaisen "what the hell"
+mom "what the hell"
 chara mar angry 
 Marise "hey, don't say that!"
 chara mar disappointed
